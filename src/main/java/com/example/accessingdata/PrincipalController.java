@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping(path = "/demo")
+@CrossOrigin(origins = "*")
 public class PrincipalController {
   
     @Autowired
@@ -28,7 +29,7 @@ public class PrincipalController {
     }
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<Usuario> getAllUsuarios(){
-        return uRepository.findAll();
+        return uRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     @PutMapping(path = "/update/{id}")
